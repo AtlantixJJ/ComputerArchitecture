@@ -1,0 +1,926 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  .markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
+  }
+  
+  @media (max-width: 767px) {
+    .markdown-body {
+      padding: 15px;
+    }
+  }
+  
+  @font-face {
+    font-family: octicons-link;
+    src: url(data:font/woff;charset=utf-8;base64,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)
+      format("woff");
+  }
+  
+  .markdown-body {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    line-height: 1.5;
+    color: #24292e;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+      sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+  
+  .markdown-body .pl-c {
+    color: #6a737d;
+  }
+  
+  .markdown-body .pl-c1,
+  .markdown-body .pl-s .pl-v {
+    color: #005cc5;
+  }
+  
+  .markdown-body .pl-e,
+  .markdown-body .pl-en {
+    color: #6f42c1;
+  }
+  
+  .markdown-body .pl-smi,
+  .markdown-body .pl-s .pl-s1 {
+    color: #24292e;
+  }
+  
+  .markdown-body .pl-ent {
+    color: #22863a;
+  }
+  
+  .markdown-body .pl-k {
+    color: #d73a49;
+  }
+  
+  .markdown-body .pl-s,
+  .markdown-body .pl-pds,
+  .markdown-body .pl-s .pl-pse .pl-s1,
+  .markdown-body .pl-sr,
+  .markdown-body .pl-sr .pl-cce,
+  .markdown-body .pl-sr .pl-sre,
+  .markdown-body .pl-sr .pl-sra {
+    color: #032f62;
+  }
+  
+  .markdown-body .pl-v,
+  .markdown-body .pl-smw {
+    color: #e36209;
+  }
+  
+  .markdown-body .pl-bu {
+    color: #b31d28;
+  }
+  
+  .markdown-body .pl-ii {
+    color: #fafbfc;
+    background-color: #b31d28;
+  }
+  
+  .markdown-body .pl-c2 {
+    color: #fafbfc;
+    background-color: #d73a49;
+  }
+  
+  .markdown-body .pl-c2::before {
+    content: "^M";
+  }
+  
+  .markdown-body .pl-sr .pl-cce {
+    font-weight: bold;
+    color: #22863a;
+  }
+  
+  .markdown-body .pl-ml {
+    color: #735c0f;
+  }
+  
+  .markdown-body .pl-mh,
+  .markdown-body .pl-mh .pl-en,
+  .markdown-body .pl-ms {
+    font-weight: bold;
+    color: #005cc5;
+  }
+  
+  .markdown-body .pl-mi {
+    font-style: italic;
+    color: #24292e;
+  }
+  
+  .markdown-body .pl-mb {
+    font-weight: bold;
+    color: #24292e;
+  }
+  
+  .markdown-body .pl-md {
+    color: #b31d28;
+    background-color: #ffeef0;
+  }
+  
+  .markdown-body .pl-mi1 {
+    color: #22863a;
+    background-color: #f0fff4;
+  }
+  
+  .markdown-body .pl-mc {
+    color: #e36209;
+    background-color: #ffebda;
+  }
+  
+  .markdown-body .pl-mi2 {
+    color: #f6f8fa;
+    background-color: #005cc5;
+  }
+  
+  .markdown-body .pl-mdr {
+    font-weight: bold;
+    color: #6f42c1;
+  }
+  
+  .markdown-body .pl-ba {
+    color: #586069;
+  }
+  
+  .markdown-body .pl-sg {
+    color: #959da5;
+  }
+  
+  .markdown-body .pl-corl {
+    text-decoration: underline;
+    color: #032f62;
+  }
+  
+  .markdown-body .octicon {
+    display: inline-block;
+    vertical-align: text-top;
+    fill: currentColor;
+  }
+  
+  .markdown-body a {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+  }
+  
+  .markdown-body a:active,
+  .markdown-body a:hover {
+    outline-width: 0;
+  }
+  
+  .markdown-body strong {
+    font-weight: inherit;
+  }
+  
+  .markdown-body strong {
+    font-weight: bolder;
+  }
+  
+  .markdown-body h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+  }
+  
+  .markdown-body img {
+    border-style: none;
+  }
+  
+  .markdown-body svg:not(:root) {
+    overflow: hidden;
+  }
+  
+  .markdown-body code,
+  .markdown-body kbd,
+  .markdown-body pre {
+    font-family: monospace, monospace;
+    font-size: 1em;
+  }
+  
+  .markdown-body hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+  }
+  
+  .markdown-body input {
+    font: inherit;
+    margin: 0;
+  }
+  
+  .markdown-body input {
+    overflow: visible;
+  }
+  
+  .markdown-body [type="checkbox"] {
+    box-sizing: border-box;
+    padding: 0;
+  }
+  
+  .markdown-body * {
+    box-sizing: border-box;
+  }
+  
+  .markdown-body input {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  
+  .markdown-body a {
+    color: #0366d6;
+    text-decoration: none;
+  }
+  
+  .markdown-body a:hover {
+    text-decoration: underline;
+  }
+  
+  .markdown-body strong {
+    font-weight: 600;
+  }
+  
+  .markdown-body hr {
+    height: 0;
+    margin: 15px 0;
+    overflow: hidden;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #dfe2e5;
+  }
+  
+  .markdown-body hr::before {
+    display: table;
+    content: "";
+  }
+  
+  .markdown-body hr::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+  
+  .markdown-body table {
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+  
+  .markdown-body td,
+  .markdown-body th {
+    padding: 0;
+  }
+  
+  .markdown-body h1,
+  .markdown-body h2,
+  .markdown-body h3,
+  .markdown-body h4,
+  .markdown-body h5,
+  .markdown-body h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  .markdown-body h1 {
+    font-size: 32px;
+    font-weight: 600;
+  }
+  
+  .markdown-body h2 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  .markdown-body h3 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .markdown-body h4 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .markdown-body h5 {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .markdown-body h6 {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .markdown-body p {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .markdown-body blockquote {
+    margin: 0;
+  }
+  
+  .markdown-body ul,
+  .markdown-body ol {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  .markdown-body ol ol,
+  .markdown-body ul ol {
+    list-style-type: lower-roman;
+  }
+  
+  .markdown-body ul ul ol,
+  .markdown-body ul ol ol,
+  .markdown-body ol ul ol,
+  .markdown-body ol ol ol {
+    list-style-type: lower-alpha;
+  }
+  
+  .markdown-body dd {
+    margin-left: 0;
+  }
+  
+  .markdown-body code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+      monospace;
+    font-size: 12px;
+  }
+  
+  .markdown-body pre {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+      monospace;
+    font-size: 12px;
+  }
+  
+  .markdown-body .octicon {
+    vertical-align: text-bottom;
+  }
+  
+  .markdown-body .pl-0 {
+    padding-left: 0 !important;
+  }
+  
+  .markdown-body .pl-1 {
+    padding-left: 4px !important;
+  }
+  
+  .markdown-body .pl-2 {
+    padding-left: 8px !important;
+  }
+  
+  .markdown-body .pl-3 {
+    padding-left: 16px !important;
+  }
+  
+  .markdown-body .pl-4 {
+    padding-left: 24px !important;
+  }
+  
+  .markdown-body .pl-5 {
+    padding-left: 32px !important;
+  }
+  
+  .markdown-body .pl-6 {
+    padding-left: 40px !important;
+  }
+  
+  .markdown-body::before {
+    display: table;
+    content: "";
+  }
+  
+  .markdown-body::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+  
+  .markdown-body > *:first-child {
+    margin-top: 0 !important;
+  }
+  
+  .markdown-body > *:last-child {
+    margin-bottom: 0 !important;
+  }
+  
+  .markdown-body a:not([href]) {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .markdown-body .anchor {
+    float: left;
+    padding-right: 4px;
+    margin-left: -20px;
+    line-height: 1;
+  }
+  
+  .markdown-body .anchor:focus {
+    outline: none;
+  }
+  
+  .markdown-body p,
+  .markdown-body blockquote,
+  .markdown-body ul,
+  .markdown-body ol,
+  .markdown-body dl,
+  .markdown-body table,
+  .markdown-body pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+  
+  .markdown-body hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: #e1e4e8;
+    border: 0;
+  }
+  
+  .markdown-body blockquote {
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: 0.25em solid #dfe2e5;
+  }
+  
+  .markdown-body blockquote > :first-child {
+    margin-top: 0;
+  }
+  
+  .markdown-body blockquote > :last-child {
+    margin-bottom: 0;
+  }
+  
+  .markdown-body kbd {
+    display: inline-block;
+    padding: 3px 5px;
+    font-size: 11px;
+    line-height: 10px;
+    color: #444d56;
+    vertical-align: middle;
+    background-color: #fafbfc;
+    border: solid 1px #c6cbd1;
+    border-bottom-color: #959da5;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 #959da5;
+  }
+  
+  .markdown-body h1,
+  .markdown-body h2,
+  .markdown-body h3,
+  .markdown-body h4,
+  .markdown-body h5,
+  .markdown-body h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  
+  .markdown-body h1 .octicon-link,
+  .markdown-body h2 .octicon-link,
+  .markdown-body h3 .octicon-link,
+  .markdown-body h4 .octicon-link,
+  .markdown-body h5 .octicon-link,
+  .markdown-body h6 .octicon-link {
+    color: #1b1f23;
+    vertical-align: middle;
+    visibility: hidden;
+  }
+  
+  .markdown-body h1:hover .anchor,
+  .markdown-body h2:hover .anchor,
+  .markdown-body h3:hover .anchor,
+  .markdown-body h4:hover .anchor,
+  .markdown-body h5:hover .anchor,
+  .markdown-body h6:hover .anchor {
+    text-decoration: none;
+  }
+  
+  .markdown-body h1:hover .anchor .octicon-link,
+  .markdown-body h2:hover .anchor .octicon-link,
+  .markdown-body h3:hover .anchor .octicon-link,
+  .markdown-body h4:hover .anchor .octicon-link,
+  .markdown-body h5:hover .anchor .octicon-link,
+  .markdown-body h6:hover .anchor .octicon-link {
+    visibility: visible;
+  }
+  
+  .markdown-body h1 {
+    padding-bottom: 0.3em;
+    font-size: 2em;
+    border-bottom: 1px solid #eaecef;
+  }
+  
+  .markdown-body h2 {
+    padding-bottom: 0.3em;
+    font-size: 1.5em;
+    border-bottom: 1px solid #eaecef;
+  }
+  
+  .markdown-body h3 {
+    font-size: 1.25em;
+  }
+  
+  .markdown-body h4 {
+    font-size: 1em;
+  }
+  
+  .markdown-body h5 {
+    font-size: 0.875em;
+  }
+  
+  .markdown-body h6 {
+    font-size: 0.85em;
+    color: #6a737d;
+  }
+  
+  .markdown-body ul,
+  .markdown-body ol {
+    padding-left: 2em;
+  }
+  
+  .markdown-body ul ul,
+  .markdown-body ul ol,
+  .markdown-body ol ol,
+  .markdown-body ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  .markdown-body li > p {
+    margin-top: 16px;
+  }
+  
+  .markdown-body li + li {
+    margin-top: 0.25em;
+  }
+  
+  .markdown-body dl {
+    padding: 0;
+  }
+  
+  .markdown-body dl dt {
+    padding: 0;
+    margin-top: 16px;
+    font-size: 1em;
+    font-style: italic;
+    font-weight: 600;
+  }
+  
+  .markdown-body dl dd {
+    padding: 0 16px;
+    margin-bottom: 16px;
+  }
+  
+  .markdown-body table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+  }
+  
+  .markdown-body table th {
+    font-weight: 600;
+  }
+  
+  .markdown-body table th,
+  .markdown-body table td {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+  }
+  
+  .markdown-body table tr {
+    background-color: #fff;
+    border-top: 1px solid #c6cbd1;
+  }
+  
+  .markdown-body table tr:nth-child(2n) {
+    background-color: #f6f8fa;
+  }
+  
+  .markdown-body img {
+    max-width: 100%;
+    box-sizing: content-box;
+    background-color: #fff;
+  }
+  
+  .markdown-body img[align="right"] {
+    padding-left: 20px;
+  }
+  
+  .markdown-body img[align="left"] {
+    padding-right: 20px;
+  }
+  
+  .markdown-body code {
+    padding: 0;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px;
+  }
+  
+  .markdown-body code::before,
+  .markdown-body code::after {
+    letter-spacing: -0.2em;
+    content: "\00a0";
+  }
+  
+  .markdown-body pre {
+    word-wrap: normal;
+  }
+  
+  .markdown-body pre > code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+  
+  .markdown-body .highlight {
+    margin-bottom: 16px;
+  }
+  
+  .markdown-body .highlight pre {
+    margin-bottom: 0;
+    word-break: normal;
+  }
+  
+  .markdown-body .highlight pre,
+  .markdown-body pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f6f8fa;
+    border-radius: 3px;
+  }
+  
+  .markdown-body pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+  
+  .markdown-body pre code::before,
+  .markdown-body pre code::after {
+    content: normal;
+  }
+  
+  .markdown-body .full-commit .btn-outline:not(:disabled):hover {
+    color: #005cc5;
+    border-color: #005cc5;
+  }
+  
+  .markdown-body kbd {
+    display: inline-block;
+    padding: 3px 5px;
+    font: 11px "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+      monospace;
+    line-height: 10px;
+    color: #444d56;
+    vertical-align: middle;
+    background-color: #fafbfc;
+    border: solid 1px #d1d5da;
+    border-bottom-color: #c6cbd1;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 #c6cbd1;
+  }
+  
+  .markdown-body :checked + .radio-label {
+    position: relative;
+    z-index: 1;
+    border-color: #0366d6;
+  }
+  
+  .markdown-body .task-list-item {
+    list-style-type: none;
+  }
+  
+  .markdown-body .task-list-item + .task-list-item {
+    margin-top: 3px;
+  }
+  
+  .markdown-body .task-list-item input {
+    margin: 0 0.2em 0.25em -1.6em;
+    vertical-align: middle;
+  }
+  
+  .markdown-body hr {
+    border-bottom-color: #eee;
+  }
+  </style>
+</head>
+<body>
+<article class="markdown-body">
+<h1 id="实验一cache替换策略的设计与分析">实验一：Cache替换策略的设计与分析</h1>
+<p>徐鉴劲 2015011313 计54</p>
+<h2 id="已有的cache替换策略">已有的Cache替换策略</h2>
+<h3 id="lru最近未使用替换策略">LRU：最近未使用替换策略</h3>
+<p>LRU(Least Recent Used)核心思想是将最久的没有使用过的块替换出去。</p>
+<p>原本应该是统计一下使用次数，将使用最少的cache块替换出去，但是由于实现比较复杂，一般使用上面所说的方法。</p>
+<p>具体的实现可以使用一个栈，发生访问的时候，将栈中被访问的块的上面的块下移，再将这个块移到栈顶即可。发生替换的时候，将栈底的块替换出去。</p>
+<h3 id="plru策略">PLRU策略</h3>
+<p>PLRU(Pseudo-LRU)，核心思想是用较少的开销近似LRU。</p>
+<p>一种基于二叉树的cache替换策略如下：</p>
+<p>首先，cache内的所有块用二叉树表示。二叉树的路径就表示了一个被选中的cache块。二叉树的节点上（除了叶子结点是cache块）有一个bit表示路径是左子树还是柚子树。</p>
+<p>然后，在发生访问的时候，指针沿着二叉树的路径向下，路途上的节点bit都被取反。</p>
+<p>如果该位置上已有有块了，就把它替换出去。</p>
+<h3 id="fifo策略">FIFO策略</h3>
+<p>最先进入cache的块最先被替换出去，其直觉来源于最早进入的块待的时间最久。</p>
+<h3 id="lifo策略">LIFO策略</h3>
+<p>最先进入cache的块最后被替换出去。其直觉来源于：刚刚访问过的块，可能一段时间内并不需要了。</p>
+<p>其实只需要记录上一次访问的块，然后发生替换的时候直接替换出这一个块即可。</p>
+<h3 id="随机替换策略">随机替换策略</h3>
+<p>顾名思义，当发生替换的时候，随机选择一个目标进行替换。</p>
+<p>它最大的优点是简单，缺点是会降低命中率。</p>
+<h3 id="lfu策略">LFU策略</h3>
+<p>最近最常使用替换。</p>
+<h2 id="我的cache策略替换clock-lru">我的Cache策略替换：Clock-LRU</h2>
+<h3 id="设计思路">设计思路</h3>
+<p>我基于LRU的一种退化情况进行了改进，我叫做clock-LRU算法。</p>
+<p>循环中的访问是周期性的，如果一个cache的最大容量可以容纳一个循环的量，在这里LRU可以很快地收敛到最佳结果。但是如果一个循环中的访问量大于cache的容量，那么有可能出现一种退化情况：LRU退化成FIFO。</p>
+<p>我的改进基于以下观察：</p>
+<p>在一个循环中存在以下访问：</p>
+<ol style="list-style-type: decimal">
+<li><p>a[0..1000]的访问。</p></li>
+<li><p>a[0]+a[0]+a[0]的访问。</p></li>
+</ol>
+<p>此时a[0]就是最远的，它会被替换掉，然而在后面它会被多次访问。这种情况下，LRU退化成了FIFO。由于我们假设是处于一个循环中，所以我们有可能知道a[0]曾经出现多次，我想要为LRU增加一种特例，使得他能够在这种情况下不退化成LRU。</p>
+<p>我的做法是在LRU中增加一个量：clock数。</p>
+<p>如果访问一个量的时候发现它正好处于栈顶，那么clock += 1。</p>
+<p>如果要替换出去的块有大于1的clock数，那么我们应该将倒数第二块替换出去，同时将它的clock数减去1。</p>
+<p>在这样策略的作用下，从第二次循环开始，a[0]就会常驻在cache块中，不会被替换出去。</p>
+<h3 id="核心代码">核心代码</h3>
+<p>核心代码是<code>UpdateClockLRU</code>和<code>Get_ClockLRU_Victim</code>：</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">INT32 CACHE_REPLACEMENT_STATE::Get_ClockLRU_Victim( UINT32 setIndex )
+{
+    <span class="co">// Get pointer to replacement state of current set</span>
+    LINE_REPLACEMENT_STATE *replSet = repl[ setIndex ];
+
+    INT32   lruFirst   = <span class="dv">0</span>;
+    INT32   lruSecond  = <span class="dv">0</span>;
+    bool vic_first = true;
+
+    <span class="co">// Search for victim whose stack position is assoc-1</span>
+    <span class="cf">for</span>(UINT32 way=<span class="dv">0</span>; way&lt;assoc; way++) 
+    {
+        <span class="cf">if</span>( replSet[way].LRUstackposition == (assoc-<span class="dv">1</span>) ) 
+        {
+            lruFirst = way;
+            <span class="cf">if</span>( replSet[way].ClockNum == <span class="dv">0</span> ) {
+                <span class="co">// clock == 0: victim</span>
+                <span class="cf">break</span>;
+            } <span class="cf">else</span> {
+                <span class="co">// clock != 0: second as victim</span>
+                vic_first = false;
+                replSet[way].ClockNum --;
+            }
+        }
+        <span class="cf">if</span>( replSet[way].LRUstackposition == (assoc-<span class="dv">2</span>) ) 
+        {
+            lruSecond = way;
+        }
+    }
+
+    <span class="cf">if</span>(vic_first) <span class="cf">return</span> lruFirst;
+    
+    <span class="co">// reset the second victim&#39;s clock</span>
+    replSet[lruSecond].ClockNum = <span class="dv">0</span>;
+    <span class="cf">return</span> lruSecond;
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">void</span> CACHE_REPLACEMENT_STATE::UpdateClockLRU( UINT32 setIndex, INT32 updateWayID )
+{
+    <span class="co">// Determine current LRU stack position</span>
+    UINT32 currLRUstackposition = repl[ setIndex ][ updateWayID ].LRUstackposition;
+
+    <span class="cf">if</span> ( currLRUstackposition == <span class="dv">0</span> ) repl[ setIndex ][ updateWayID ].ClockNum ++;
+    <span class="cf">else</span> {
+        <span class="co">// Update the stack position of all lines before the current line</span>
+        <span class="co">// Update implies incremeting their stack positions by one</span>
+        <span class="cf">for</span>(UINT32 way=<span class="dv">0</span>; way&lt;assoc; way++) 
+        {
+            <span class="cf">if</span>( repl[setIndex][way].LRUstackposition &lt; currLRUstackposition ) 
+            {
+                repl[setIndex][way].LRUstackposition++;
+            }
+        }
+    }
+
+    <span class="co">// Set the LRU stack position of new line to be zero</span>
+    repl[ setIndex ][ updateWayID ].LRUstackposition = <span class="dv">0</span>;
+}</code></pre></div>
+<h2 id="实验">实验</h2>
+<p>时间结果如下图所示：</p>
+<div class="figure">
+<img src="statis/Rplot1.png" />
+
+</div>
+<div class="figure">
+<img src="statis/Rplot2.png" />
+
+</div>
+<div class="figure">
+<img src="statis/Rplot3.png" />
+
+</div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">替换策略/指标</th>
+<th align="left">CPI</th>
+<th align="left">LLC miss</th>
+<th align="left">miss rate %</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">LRU</td>
+<td align="left">0.5561</td>
+<td align="left">460272</td>
+<td align="left">64.629</td>
+</tr>
+<tr class="even">
+<td align="left">Random</td>
+<td align="left">0.5603</td>
+<td align="left">460684</td>
+<td align="left">65.389</td>
+</tr>
+<tr class="odd">
+<td align="left">ClockLRU</td>
+<td align="left">0.5561</td>
+<td align="left">460254</td>
+<td align="left">64.627</td>
+</tr>
+</tbody>
+</table>
+<p>Random替换策略具有最高的miss rate，因而它的CPI是最多的，所以程序运行时间最长。</p>
+<p>LRU替换策略具有最低的miss rate，它的CPI是最小的，程序的运行时间最短。</p>
+<p>我对于LRU的改进还比较微小，可能是直接选第二个的策略太过于简单粗暴，每次clock只减去1也可能不符合实际情况。</p>
+</article>
+</body>
+</html>
